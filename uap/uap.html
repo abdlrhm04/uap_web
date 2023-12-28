@@ -1,0 +1,68 @@
+<html>
+<head>
+  <title>UAP WEB</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Input User</h2>
+
+  <form id="barangForm">
+    <label for="kodeBarang">Kode Barang:</label>
+    <input id="kodeBarang" required>
+    <br>
+
+    <label for="namaBarang">Nama Barang:</label>
+    <input id="namaBarang" required>
+    <br>
+
+    <label for="hargaBarang">Harga Barang:</label>
+    <input id="hargaBarang" required>
+    <br>
+
+    <button type="button" onclick="tambahBarang()">Tambah Barang</button>
+  </form>
+
+  <h2>Daftar Barang</h2>
+  <ul id="daftarBarang"></ul>
+
+  <script>
+    let daftarBarang = [];
+
+    function tambahBarang() {
+      const kodeBarang = document.getElementById('kodeBarang').value;
+      const namaBarang = document.getElementById('namaBarang').value;
+      const hargaBarang = parseFloat(document.getElementById('hargaBarang').value);
+
+      daftarBarang.push({
+        kode: kodeBarang,
+        nama: namaBarang,
+        harga: hargaBarang
+      });
+
+      tampilkanDaftarBarang();
+
+      document.getElementById('kodeBarang').value = '';
+      document.getElementById('namaBarang').value = '';
+      document.getElementById('hargaBarang').value = '';
+    }
+
+    function tampilkanDaftarBarang() {
+      const daftarBarangElem = document.getElementById('daftarBarang');
+
+      daftarBarang.forEach(barang => {
+        const li = document.createElement('li');
+        li.textContent = `${barang.kode}, ${barang.nama}, ${barang.harga}`;
+        daftarBarangElem.appendChild(li);
+      });
+
+    }
+  </script>
+
+</body>
+</html>
